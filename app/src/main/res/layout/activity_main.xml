@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.polar.androidblesdk.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/buttons_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- <Button -->
+            <!-- android:id="@+id/broadcast_button" -->
+            <!-- android:layout_width="match_parent" -->
+            <!-- android:layout_height="wrap_content" -->
+            <!-- android:text="@string/listen_broadcast" /> -->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/white" />
+
+		<AutoCompleteTextView
+            android:id="@+id/device_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"            
+            android:hint="@string/polar_device_id"
+			android:layout_margin="16dp"						
+            android:inputType="text"/>
+			
+		<Button
+            android:id="@+id/connect_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/connect_to_device" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/white" />              
+
+        <Button
+            android:id="@+id/get_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/get_time" />
+
+        <Button
+            android:id="@+id/get_disk_space"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/get_disk_space" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/white" />        
+
+        <Button
+            android:id="@+id/status_recordings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/status_recordings" />
+		
+		<Button
+            android:id="@+id/start_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/start_recording" />
+
+        <Button
+            android:id="@+id/stop_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/stop_recording" />
+			
+		 <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="2dp"
+            android:background="@android:color/white" />	
+			
+		<Button
+            android:id="@+id/list_recordings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/list_recordings" />
+
+        <Button
+            android:id="@+id/download_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/download_recording" />
+
+        <Button
+            android:id="@+id/delete_recording"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/delete_recording" />
+			
+		<!-- Add this TextView to show the log information -->
+		<TextView
+			android:id="@+id/statusLabel"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+			android:textSize="18sp"
+			android:layout_alignParentBottom="true"
+			android:layout_centerHorizontal="true"/>	
+
+    </LinearLayout>
+</ScrollView>
