@@ -41,6 +41,7 @@ import android.os.Looper
 import android.widget.ArrayAdapter
 import android.text.InputFilter
 import android.text.InputFilter.AllCaps
+import android.view.WindowManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -141,6 +142,8 @@ class MainActivity : AppCompatActivity() {
 
         api.setPolarFilter(false)
         disableAllButtons()
+        getVersion()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
         // If there is need to log what is happening inside the SDK, it can be enabled like this:
         val enableSdkLogs = false
         if(enableSdkLogs) {
@@ -265,13 +268,16 @@ class MainActivity : AppCompatActivity() {
                 )
             showToast("Stops PPI recording")
             fetchOfflineRecordingStatus()
+            runWithDelay(2000) {
+                listRecordings()
+            }
         }
 
         downloadRecordingButton.setOnClickListener {
             Log.d(TAG, "Searching to recording to download... ")
             //Get first entry for testing download
             val datetimeFormat = SimpleDateFormat("yyyy-MM-dd_HH.mm.ss")
-            val offlineRecEntry = entryCache[deviceId]?.lastOrNull()
+            val offlineRecEntry = entryCache[deviceId]?.maxByOrNull { it.date }
             if(offlineRecEntry == null)
                 showSnackbar("Please tap on list Verity Sense Recordings to have files entry up to date")
             offlineRecEntry?.let { offlineEntry ->
@@ -284,7 +290,7 @@ class MainActivity : AppCompatActivity() {
                                 when (it) {
                                     is PolarOfflineRecordingData.PpiOfflineRecording -> {
                                         Log.d(TAG, "PPI Recording started at ${it.startTime}")//
-                                        val fileName = "Polar_Device_ID_${deviceId}_PPI_Recording_${datetimeFormat.format(it.startTime.time)}.txt"
+                                        val fileName = "${deviceId}_PPI_Recording_Date_${datetimeFormat.format(it.startTime.time)}.txt"
                                         saveRecordingToFile(it.data.samples, fileName, datetimeFormat.format(it.startTime.time))
                                         showSnackbar("File saved to: ${Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)}/${fileName}.\n Tap here to open the folder", true)
                                     }
@@ -303,7 +309,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         deleteRecordingButton.setOnClickListener {
-            val offlineRecEntry = entryCache[deviceId]?.lastOrNull()
+            val offlineRecEntry = entryCache[deviceId]?.maxByOrNull { it.date }
             if(offlineRecEntry == null) {
                 showSnackbar("Please tap on list Verity Sense Recording to have files entry up to date")
             }
@@ -534,6 +540,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listRecordings() {
+        entryCache[deviceId]?.clear()
         api.listOfflineRecordings(deviceId)
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe {
@@ -674,6 +681,16 @@ class MainActivity : AppCompatActivity() {
         handler.postDelayed({
             action()
         }, delayMillis)
+    }
+
+    private fun getVersion(){
+    val versionLabel = findViewById<TextView>(R.id.versionLabel)
+
+    // Get the version name from BuildConfig
+    val versionName = BuildConfig.VERSION_NAME
+
+    // Set the version name as the text of the TextView
+    versionLabel.text = "version $versionName"
     }
 
 }
