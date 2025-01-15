@@ -51,7 +51,7 @@ The downloaded recording is in **CSV** format with the following structure:
 ---
 
 ## License
-This project is licensed under the [MIT License ??]().
+This project is licensed under the [Apache 2.0 License](https://github.com/LBI-DHP/PolarPPIRecording/blob/main/LICENSE.txt).
 
 ## Acknowledgments
 - **Polar SDK** for device integration.
