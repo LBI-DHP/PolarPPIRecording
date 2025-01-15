@@ -3,7 +3,9 @@
 ## Overview
 The **Polar PPI Recording Android** application utilizes the **Polar SDK** to connect with **Polar Verity Sense** devices over Bluetooth. It allows users to manage offline **PPI (Pulse-to-Pulse Interval)** recordings seamlessly.
 
-![polarppirecording](https://github.com/user-attachments/assets/cb0cfec2-d1b5-4f8b-baca-0fa9c8aa465a)
+![polarppirecording](https://github.com/user-attachments/assets/24241564-5e77-4419-8c87-d90c9da40617)
+
+
 
 ## Features
 
